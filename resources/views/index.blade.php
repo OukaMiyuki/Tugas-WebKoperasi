@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -162,26 +164,29 @@
         $('#dir_img').on('change',function(){
             var fileName = $(this).val();
             $(this).next('.custom-file-label').html(fileName);
-        })
+        });
 
-        $(function () {
-            $(document).on('change', ':file', function () {
-                var input = $(this),
-                numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                input.trigger('fileselect', [numFiles, label]);
-            });
-            $(document).ready(function () {
-                $(':file').on('fileselect', function (event, numFiles, label) {
-                    var input = $(this).parents('.input-group').find(':text'),
-                        log = numFiles > 1 ? numFiles + ' files selected' : label;
-                    if (input.length) {
-                        input.val(log);
-                    } else {
-                        if (log) alert(log);
-                    }
+        var fileuploadinit = function(){
+            $('#dir_img').change(function(){
+                var pathwithfilename = $('#dir_img').val();
+                var filename = pathwithfilename.substring(12);
+                $('.addmember').html(filename).css({
+                    'display':'block'
                 });
             });
+        };
+        var fileuploadinit2 = function(){
+            $('#dir_imgg').change(function(){
+                var pathwithfilename = $('#dir_imgg').val();
+                var filename = pathwithfilename.substring(12);
+                $('.editphoto').html(filename).css({
+                    'display':'block'
+                });
+            });
+        };
+        $(document).ready(function () {
+            fileuploadinit();
+            fileuploadinit2();
         });
     </script>
 </body>

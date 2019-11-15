@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\cek_id;
+use App\usr_image_db;
 
 class dataMember extends Controller
 {
@@ -13,6 +14,7 @@ class dataMember extends Controller
     	//$data = DB::table('tb_anggotas')->get();
     	$data = DB::table('tb_anggotas')
     		->join('cek_ids', 'cek_ids.kode_member', '=', 'tb_anggotas.kode_member')
+            ->join('usr_image_dbs', 'usr_image_dbs.kode_member', '=', 'tb_anggotas.kode_member')
     		->get();
     	$kode="";
     	//echo $users;

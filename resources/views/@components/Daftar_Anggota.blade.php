@@ -16,9 +16,9 @@
                                             <tr>
                                                 <th width="10">No.</th>
                                                 <th width="80">Kode</th>
-                                                <th width="250">Nama</th>
+                                                <th width="200">Nama</th>
                                                 <th width="80">Status</th>
-                                                <th width="250">Action</th>
+                                                <th width="300">Action</th>
                                             </tr>
                                         </thead>
                                         @php
@@ -32,9 +32,16 @@
                                                 <td>{{$d->nama}}</td>
                                                 <td align="center">{{$d->status_anggota}}</td>
                                                 <td align="center">
-                                                    <button class="btn btn-primary btn-xs" ><i class="fas fa-edit"></i></i> Edit</button>  
+                                                    <a id="edit_data_member" data-toggle="modal" data-target="#edit_anggota" data-kode="{{ $d->kode_member }}" data-nik="{{ $d->nik }}"  data-nama="{{ $d->nama }}"  data-jk="{{ $d->jk }}"  data-pekerjaan="{{ $d->pekerjaan }}"  data-alamat="{{ $d->alamat }}"  data-kako="{{ $d->kabkota }}"  data-pos="{{ $d->pos }}"  data-email="{{ $d->email }}"  data-telp="{{ $d->telp }}"  data-photo="{{ $d->photo }}" data-ekstensi="{{ $d->ekstensi }}">
+                                                        <button class="btn btn-primary btn-xs" ><i class="fas fa-edit"></i></i> Edit</button>
+                                                    </a>  
                                                     <button class="btn btn-info btn-xs" ><i class="fas fa-eye"></i> Lihat Profil</button>
-                                                    <button class="btn btn-danger btn-xs" ><i class="fas fa-trash-alt"></i> Hapus</button> 
+                                                    @if($d->status_anggota == "Aktif")
+                                                        <button class="btn btn-danger btn-xs" ><i class="fas fa-ban"></i> Non-Aktif</button> 
+                                                    @elseif($d->status_anggota == "Non-Aktif")
+                                                        <button class="btn btn-success btn-xs" ><i class="fas fa-unlock-alt"></i> Aktifkan</button>
+                                                    @endif
+                                                    <button class="btn btn-danger btn-xs" ><i class="fas fa-trash-alt"></i> Hapus</button>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -49,4 +56,32 @@
         </div>
     </section>
 </p>
+<script type="text/javascript">
+     $(document).on("click", "#edit_data_member", function() {
+        var kd = $(this).data('kode');
+        var nik = $(this).data('nik');
+        var nama = $(this).data('nama');
+        var jk = $(this).data('jk');
+        var pkr = $(this).data('pekerjaan');
+        var almt = $(this).data('alamat');
+        var kako = $(this).data('kako');
+        var pos = $(this).data('pos');
+        var eml = $(this).data('email');
+        var telp = $(this).data('telp');
+        var img = $(this).data('photo');
+        var eks = $(this).data('ekstensi');
+        $("#show_edit #kode_member").val(kd);
+        $("#show_edit #nik").val(nik);
+        $("#show_edit #nama").val(nama);
+        $("#show_edit #jk").val(jk);
+        $("#show_edit #pekerjaan").val(pkr);
+        $("#show_edit #alamat").val(almt);
+        $("#show_edit #kabko").val(kako);
+        $("#show_edit #pos").val(pos);
+        $("#show_edit #email").val(eml);
+        $("#show_edit #telp").val(telp);
+        $("#show_edit #photo").attr("src", "https://i.imgur.com/"+img+"."+eks);
+    })
+</script>
 @include('@components.modal.add_member')
+@include('@components.modal.edit_info_member')

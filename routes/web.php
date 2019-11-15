@@ -11,13 +11,7 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('index');
-//});
 Route::get('/','dataMember@showMember');
-//Route::get('page/daftar_anggota', function () {
-//    return view('index');
-//});
 Route::get('page/daftar_anggota','dataMember@showMember');
 Route::get('page/daftar_user', function () {
     return view('index');
@@ -29,5 +23,6 @@ Route::get('page/pinjam', function () {
 Route::get('page/profil/manager', function () {
     return view('index');
 });
-
+//route CRUD
 Route::post('add/member', 'member@addMember')->name('upload.member');
+Route::post('update/member', 'member@editMember')->name('update.member');
