@@ -2,7 +2,7 @@
     <section class="content">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Data User & Akses</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#add_user"><i class="far fa-plus-square"></i> Add User</a>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#daftar_user"><i class="far fa-plus-square"></i> Add User</a>
         </div>
         <div class="row">
             <div class="col-xl-12">
@@ -11,7 +11,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="table-responsive">
-                                    <table id="tblMember" class="table table-striped table-bordered display table-sm" cellspacing="0" width="100%">
+                                    <table id="usertbl" class="table table-striped table-bordered display table-sm" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th width="210">Nama</th>
@@ -45,3 +45,4 @@
     </section>
 </p>
 @include('@components.modal.add_user')
+@include('@components.modal.daftar_user')

@@ -368,3 +368,9 @@ a.article:hover {
   line-height: .5;
   border-radius: .2rem;
 }
+.dataTables_scrollHeadInner{
+  width:100% !important;
+}
+.dataTables_scrollHeadInner table{
+  width:100% !important;
+}

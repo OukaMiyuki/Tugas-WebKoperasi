@@ -22,8 +22,8 @@ class dataMember extends Controller
     		$kode = "USR".date("Ymd")."-1";
     	} else{
     		//$cek = DB::table('cek_ids')->where(max('id'))->get();
-    		$cek = cek_id::max('id');
-    		$add = $cek+1;
+    		//$cek = cek_id::max('id');
+    		$add = $users+1;
     		$kode= "USR".date("Ymd")."-".$add;
     	}
     	return view('index',['kode' => $kode, 'data' => $data]);

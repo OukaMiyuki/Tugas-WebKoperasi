@@ -37,11 +37,17 @@
                                                     </a>  
                                                     <button class="btn btn-info btn-xs" ><i class="fas fa-eye"></i> Lihat Profil</button>
                                                     @if($d->status_anggota == "Aktif")
-                                                        <button class="btn btn-danger btn-xs" ><i class="fas fa-ban"></i> Non-Aktif</button> 
+                                                        <a href="/edit_status/member/{{ $d->kode_member }}">
+                                                            <button class="btn btn-danger btn-xs" ><i class="fas fa-ban"></i> Non-Aktif</button> 
+                                                        </a>
                                                     @elseif($d->status_anggota == "Non-Aktif")
-                                                        <button class="btn btn-success btn-xs" ><i class="fas fa-unlock-alt"></i> Aktifkan</button>
+                                                        <a href="/edit_status/member/{{ $d->kode_member }}">
+                                                            <button class="btn btn-success btn-xs" ><i class="fas fa-unlock-alt"></i> Aktifkan</button>
+                                                        </a>
                                                     @endif
-                                                    <button class="btn btn-danger btn-xs" ><i class="fas fa-trash-alt"></i> Hapus</button>
+                                                     <a href="/hapus/member/{{ $d->kode_member }}" onclick="return confirm('Hapus member {{ $d-> kode_member }} ?')">
+                                                        <button class="btn btn-danger btn-xs" ><i class="fas fa-trash-alt"></i> Hapus</button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             @endforeach
