@@ -59,6 +59,7 @@ class member extends Controller
         cek_id::create([
             'kode_member' => $kode_member,
             'nama' => $nama,
+            'status_akses' => "Member",
             'status_anggota' => $status
         ]);
         usr_image_db::create([
@@ -129,5 +130,26 @@ class member extends Controller
             ]);
             return redirect()->back()->with(['success' => 'Done Added!']);
         }
+    }
+
+    public function DisableEnableUser($kode_member){
+        $cek = DB::table('cek_ids')->where('kode_member',$kode_member)->get();
+        foreach ($cek as $data){ 
+            if($data->status_anggota == "Aktif"){
+                DB::table('cek_ids')->where('kode_member',$kode_member)->update([
+                    'status_anggota' => "Non-Aktif"
+                ]);
+            } elseif ($data->status_anggota == "Non-Aktif") {
+                DB::table('cek_ids')->where('kode_member',$kode_member)->update([
+                    'status_anggota' => "Aktif"
+                ]);
+            }
+        }
+        return redirect()->back()->with(['success' => 'Done Updated!']);
+    }
+
+    public function HapusAnggota($kode_member){
+        DB::table('tb_anggotas')->where('kode_member',$kode_member)->delete();
+        return redirect()->back()->with(['success' => 'Done Deleted!']);
     }
 }

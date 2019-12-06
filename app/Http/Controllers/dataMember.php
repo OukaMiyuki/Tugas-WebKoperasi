@@ -17,15 +17,19 @@ class dataMember extends Controller
             ->join('usr_image_dbs', 'usr_image_dbs.kode_member', '=', 'tb_anggotas.kode_member')
     		->get();
     	$kode="";
+        $cek = null;
     	//echo $users;
-    	if($users == 0){
-    		$kode = "USR".date("Ymd")."-1";
-    	} else{
+    	//if($users == 0){
+            $statement = DB::select("SHOW TABLE STATUS LIKE 'cek_ids'");
+            $cek = $statement[0]->Auto_increment;
+            //$cek = DB::table('cek_ids')->max('id') + 1;
+    	//	$kode = "USR".date("Ymd")."-1";
+    	//} else{
     		//$cek = DB::table('cek_ids')->where(max('id'))->get();
-    		$cek = cek_id::max('id');
-    		$add = $cek+1;
-    		$kode= "USR".date("Ymd")."-".$add;
-    	}
+    	//	$cek = cek_id::max('id')+1;
+    		//$add = $users+1;
+    	//}
+        $kode= "USR".date("Ymd")."-".$cek;
     	return view('index',['kode' => $kode, 'data' => $data]);
     }
 }
