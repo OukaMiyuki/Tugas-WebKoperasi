@@ -55,7 +55,6 @@
     </section>
 </p>
 @include('@components.modal.add_user')
-<<<<<<< HEAD
 @include('@components.modal.daftar_user')
 @include('@components.modal.edit_user')
 <script type="text/javascript">
@@ -70,6 +69,3 @@
         $("#editUSR #password").val(pass);
     })
 </script>
-=======
-@include('@components.modal.daftar_user')
->>>>>>> 289f60ee6468d2850658c289b656fac7a8f31ece

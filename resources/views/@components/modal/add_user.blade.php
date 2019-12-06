@@ -8,12 +8,8 @@
 			 		<span aria-hidden="true">&times;</span>
 		  		</button>
 			</div>
-<<<<<<< HEAD
 			<form role="form" action="{{ route('add.user') }}" method="post" enctype="multipart/form-data">
 				@csrf
-=======
-			<form role="form">
->>>>>>> 289f60ee6468d2850658c289b656fac7a8f31ece
 				<div class="modal-body" id="UserAdd">
 			 		<div class="form-group row">
 						<label class="col-lg-3 col-form-label form-control-label">Kode</label>
@@ -27,31 +23,19 @@
 					<div class="form-group row">
 						<label class="col-lg-3 col-form-label form-control-label">Nama</label>
 						<div class="col-lg-9">
-<<<<<<< HEAD
 							<input id="nama" name="nama" class="form-control" type="text" value="" readonly="">
-=======
-							<input id="nama" class="form-control" type="text" value="">
->>>>>>> 289f60ee6468d2850658c289b656fac7a8f31ece
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-lg-3 col-form-label form-control-label">Akses</label>
 						<div class="col-lg-9">
-<<<<<<< HEAD
 							<input id="akses" name="akses" class="form-control" type="text" value="" readonly="">
-=======
-							<input id="akses" class="form-control" type="text" value="">
->>>>>>> 289f60ee6468d2850658c289b656fac7a8f31ece
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-lg-3 col-form-label form-control-label">Email</label>
 						<div class="col-lg-9">
-<<<<<<< HEAD
 							<input id="email" name="email" class="form-control" type="email" value="" readonly="">
-=======
-							<input id="email" class="form-control" type="email" value="">
->>>>>>> 289f60ee6468d2850658c289b656fac7a8f31ece
 						</div>
 					</div>
 					<div class="form-group row">

@@ -13,11 +13,7 @@
 
 Route::get('/','dataMember@showMember');
 Route::get('page/daftar_anggota','dataMember@showMember');
-<<<<<<< HEAD
 Route::get('page/daftar_user','Show_user_tbl@showUserList');
-=======
-Route::get('page/daftar_user','Users@memberList');
->>>>>>> 289f60ee6468d2850658c289b656fac7a8f31ece
 
 Route::get('page/simpan','dataMember@showMember');
 Route::get('page/pinjam', function () {
@@ -29,7 +25,6 @@ Route::get('page/profil/manager', function () {
 //route CRUD
 Route::post('add/member', 'member@addMember')->name('upload.member');
 Route::post('update/member', 'member@editMember')->name('update.member');
-<<<<<<< HEAD
 Route::get('/hapus/member/{kode_member}','member@HapusAnggota');
 Route::post('user/add', 'UsersControl@addUser')->name('add.user');
 Route::post('user/edit', 'UsersControl@editUser')->name('edit.user');
@@ -37,9 +32,3 @@ Route::get('/hapus/user/{kode_member}','UsersControl@hapusUser');
 
 //route action
 Route::get('/edit_status/member/{kode_member}','member@DisableEnableUser');
-=======
-
-//route action
-Route::get('/edit_status/member/{kode_member}','member@DisableEnableUser');
-Route::get('/hapus/member/{kode_member}','member@HapusAnggota');
->>>>>>> 289f60ee6468d2850658c289b656fac7a8f31ece
