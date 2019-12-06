@@ -1,0 +1,65 @@
+<!-- Modal -->
+<div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  	<div class="modal-dialog modal-dialog-centered" role="document">
+	 	<div class="modal-content">
+			<div class="modal-header">
+		  		<h5 class="modal-title" id="exampleModalLongTitle"><i class="far fa-plus-square"></i> Edit User</h5>
+		  		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			 		<span aria-hidden="true">&times;</span>
+		  		</button>
+			</div>
+			<form role="form" action="{{ route('edit.user') }}" method="post" enctype="multipart/form-data">
+				@csrf
+				<div class="modal-body" id="editUSR">
+			 		<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Kode</label>
+				  		<div class="col-lg-9">
+							<input name="kode_member" id="kode_member"  class="form-control" type="text" value="" readonly="">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Nama</label>
+						<div class="col-lg-9">
+							<input id="nama" name="nama" class="form-control" type="text" value="" readonly="">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Username</label>
+						<div class="col-lg-9">
+							<input id="username" name="username" class="form-control" type="text" value="">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Password</label>
+						<div class="col-lg-9">
+							<input id="password" name="password" type="password" class="form-control" value="">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label"></label>
+						<div class="col-lg-9">
+							 <div class="custom-control custom-checkbox">
+    							<input type="checkbox" class="custom-control-input" id="customCheck" onclick="myFunction()">
+    							<label class="custom-control-label" for="customCheck">Show Pasword</label>
+  							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+		  			<button type="reset" class="btn btn-secondary">Reset</button>
+		  			<input type="submit" class="button btn btn-primary" value="Simpan">
+				</div>
+			</form>
+	 	</div>
+  	</div>
+</div>
+<script type="text/javascript">
+	function myFunction() {
+ 		var x = document.getElementById("password");
+		if (x.type === "password") {
+    		x.type = "text";
+  		} else {
+    		x.type = "password";
+  		}
+	}
+</script>
