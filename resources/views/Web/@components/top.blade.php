@@ -1,12 +1,9 @@
-
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <title>Koperasi Syariah Zazu</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="{{url('assets/css/style.css')}}">
@@ -28,7 +25,7 @@
             </div>
             <ul class="list-unstyled components">
                 <li>
-                    <a href="{!! url('/'); !!}" aria-expanded="false" class="dropdown-toggle">
+                    <a href="{!! url('/admin'); !!}" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-home"></i>
                         Home
                     </a>
@@ -40,10 +37,10 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pengguna">
                         <li>
-                            <a href="{!! url('page/daftar_user'); !!}">Data User</a>
+                            <a href="{!! url('admin/pages/daftar_user'); !!}">Data User</a>
                         </li>
                         <li>
-                            <a href="{!! url('page/daftar_anggota'); !!}">Data Member</a>
+                            <a href="{!! url('admin/pages/daftar_anggota'); !!}">Data Member</a>
                         </li>
                     </ul>
                 </li>
@@ -130,74 +127,3 @@
                     </div>
                 </div>
             </nav>
-             @if(\Request::is('/'))
-              @include('@components.Dashboard')
-            @elseif(\Request::is('page/daftar_anggota'))
-              @include('@components/Daftar_Anggota')
-            @elseif(\Request::is('page/daftar_user'))
-              @include('@components/Daftar_User')
-            @elseif(\Request::is('page/simpan'))
-              @include('@components/Tambah_Simpanan')
-            @elseif(\Request::is('page/pinjam'))
-              @include('@components/Tambah_Pinjaman')
-            @elseif(\Request::is('page/profil/manager'))
-              @include('@components/Profil')
-            @elseif(\Request::is('admin_page'))
-              <p>Halaman Utama, Harap pilih database untuk melakukan operasi!</p>
-            @endif
-        </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        });
-
-        $(document).ready(function() {
-            $('#tblMember').DataTable();
-        });
-
-        $('#dir_img').on('change',function(){
-            var fileName = $(this).val();
-            $(this).next('.custom-file-label').html(fileName);
-        });
-
-        var fileuploadinit = function(){
-            $('#dir_img').change(function(){
-                var pathwithfilename = $('#dir_img').val();
-                var filename = pathwithfilename.substring(12);
-                $('.addmember').html(filename).css({
-                    'display':'block'
-                });
-            });
-        };
-        var fileuploadinit2 = function(){
-            $('#dir_imgg').change(function(){
-                var pathwithfilename = $('#dir_imgg').val();
-                var filename = pathwithfilename.substring(12);
-                $('.editphoto').html(filename).css({
-                    'display':'block'
-                });
-            });
-        };
-        $(document).ready(function () {
-            fileuploadinit();
-            fileuploadinit2();
-        });
-
-        $(document).ready(function() {
-            $('#datausr').DataTable();
-        });
-        $(document).ready(function() {
-            $('#usertbl').DataTable();
-        });
-
-    </script>
-</body>
-</html>
