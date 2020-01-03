@@ -37,15 +37,15 @@
                                                     </a>  
                                                     <button class="btn btn-info btn-xs" ><i class="fas fa-eye"></i> Lihat Profil</button>
                                                     @if($d->status_anggota == "Aktif")
-                                                        <a href="/edit_status/member/{{ $d->kode_member }}">
+                                                        <a href="/admin/action/edit_status/member/{{ $d->kode_member }}">
                                                             <button class="btn btn-danger btn-xs" ><i class="fas fa-ban"></i> Non-Aktif</button> 
                                                         </a>
                                                     @elseif($d->status_anggota == "Non-Aktif")
-                                                        <a href="/edit_status/member/{{ $d->kode_member }}">
+                                                        <a href="/admin/action/edit_status/member/{{ $d->kode_member }}">
                                                             <button class="btn btn-success btn-xs" ><i class="fas fa-unlock-alt"></i> Aktifkan</button>
                                                         </a>
                                                     @endif
-                                                     <a href="/hapus/member/{{ $d->kode_member }}" onclick="return confirm('Hapus member {{ $d-> kode_member }} ?')">
+                                                     <a href="/admin/action/hapus/member/{{ $d->kode_member }}" onclick="return confirm('Hapus member {{ $d-> kode_member }} ?')">
                                                         <button class="btn btn-danger btn-xs" ><i class="fas fa-trash-alt"></i> Hapus</button>
                                                     </a>
                                                 </td>
@@ -89,5 +89,5 @@
         $("#show_edit #photo").attr("src", "https://i.imgur.com/"+img+"."+eks);
     })
 </script>
-@include('@components.modal.add_member')
-@include('@components.modal.edit_info_member')
+@include('Web.modal.add_member')
+@include('Web.modal.edit_info_member')

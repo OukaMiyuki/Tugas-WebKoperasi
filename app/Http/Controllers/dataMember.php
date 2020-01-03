@@ -20,6 +20,6 @@ class dataMember extends Controller
         $statement = DB::select("SHOW TABLE STATUS LIKE 'cek_ids'");
         $cek = $statement[0]->Auto_increment;
         $kode= "USR".date("Ymd")."-".$cek;
-    	return view('index',['kode' => $kode, 'data' => $data]);
+    	return view('/home/admin/index',['kode' => $kode, 'data' => $data]);
     }
 }

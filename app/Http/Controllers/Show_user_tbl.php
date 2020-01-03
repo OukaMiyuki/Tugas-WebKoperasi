@@ -23,6 +23,6 @@ class Show_user_tbl extends Controller
 		$usr = DB::table('user_tbls')
 			->select('user_tbls.kode_member', 'user_tbls.nama', 'user_tbls.uername', 'user_tbls.pasword')
 			->get();
-    	return view('index',['data' => $data, 'usr' => $usr]);
+    	return view('/home/admin/index',['data' => $data, 'usr' => $usr]);
    	}
 }

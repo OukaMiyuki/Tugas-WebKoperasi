@@ -37,7 +37,7 @@
                                                     <a id="edit_user" data-toggle="modal" data-target="#editUser" data-kode = "{{$d->kode_member}}" data-nama = "{{$d->nama}}" data-username="{{$d->uername}}" data-pass="{{$d->pasword}}">
                                                         <button class="btn btn-primary btn-sm" ><i class="fas fa-edit"></i></i></button> 
                                                     </a>
-                                                    <a href="/hapus/user/{{ $d->kode_member }}" onclick="return confirm('Hapus member {{ $d-> kode_member }} ?')">
+                                                    <a href="/admin/action/hapus/user/{{ $d->kode_member }}" onclick="return confirm('Hapus member {{ $d-> kode_member }} ?')">
                                                         <button class="btn btn-danger btn-sm" ><i class="fas fa-trash-alt"></i></button> 
                                                     </a>
                                                 </td>
@@ -54,9 +54,9 @@
         </div>
     </section>
 </p>
-@include('@components.modal.add_user')
-@include('@components.modal.daftar_user')
-@include('@components.modal.edit_user')
+@include('Web.modal.add_user')
+@include('Web.modal.daftar_user')
+@include('Web.modal.edit_user')
 <script type="text/javascript">
      $(document).on("click", "#edit_user", function() {
         var kd = $(this).data('kode');
