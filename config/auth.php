@@ -34,7 +34,6 @@ return [
     | Supported: "session", "token"
     |
     */
-
     'guards' => [
         'web' => [
             'driver' => 'session',
@@ -44,6 +43,30 @@ return [
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
+            'hash' => false,
+        ],
+
+        //guard admin
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+
+        'apiadmin' => [
+            'driver' => 'token',
+            'provider' => 'admin',
+            'hash' => false,
+        ],
+
+        //guard manager
+        'manager' => [
+            'driver' => 'session',
+            'provider' => 'manager',
+        ],
+
+        'apimanager' => [
+            'driver' => 'token',
+            'provider' => 'manager',
             'hash' => false,
         ],
     ],
@@ -69,6 +92,18 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        //admin
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\login_admin::class,
+        ],
+
+        //manager
+        'manager' => [
+            'driver' => 'eloquent',
+            'model' => App\login_manager::class,
         ],
 
         // 'users' => [
