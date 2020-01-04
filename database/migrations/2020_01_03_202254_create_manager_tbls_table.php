@@ -13,13 +13,14 @@ class CreateManagerTblsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('manager_tbls');
         Schema::create('manager_tbls', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('kode_manager');
             $table->string('uername');
             $table->string('password');
             $table->string('status_akses');
-            $table->string('status_admin');
+            $table->string('status_manager');
             $table->timestamps();
         });
     }

@@ -13,6 +13,7 @@ class CreateManagerInfosTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('manager_infos');
         Schema::create('manager_infos', function (Blueprint $table) {
             $table->string('kode_manager')->primary();
             $table->bigInteger('nik');
