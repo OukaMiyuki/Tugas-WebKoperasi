@@ -11,44 +11,57 @@
 |
 */
 
-//route login
+//LOGIN ROUTES
+Auth::routes();
 Route::get('/login', function () {
     return view('login');
 })->name('login')->middleware('guest');
 Route::post('masuk', 'login@masuk');
 Route::get('/keluar', 'login@keluar');
+//END LOGIN ROUTES
 
 //ADMIN ROUTES
-//route show
-Route::get('/admin','dataMember@showMember')->middleware('auth:admin');
-Route::get('/admin/pages/daftar_anggota','dataMember@showMember')->middleware('auth:admin');
-Route::get('/admin/pages/daftar_user','Show_user_tbl@showUserList')->middleware('auth:admin');
+Route::group(['prefix' => 'admin',  'middleware' => 'auth:admin'], function() {
+	//route show user
+	Route::get('/','member@showMember');
+	Route::get('/pages/view/daftar_anggota','member@showMember');
+	Route::get('/pages/view/daftar_user','UsersControl@showUserList');
+	Route::get('/pages/view/profile', 'AdminController@adminProfile');
+	Route::get('/pages/view/profile/member/{kode_member}', 'member@memberProfile');
 
-//member CRUD
-Route::post('admin/action/add/member', 'member@addMember')->name('upload.member')->middleware('auth:admin');
-Route::post('admin/action/update/member', 'member@editMember')->name('update.member')->middleware('auth:admin');
-Route::get('admin/action/hapus/member/{kode_member}','member@HapusAnggota')->middleware('auth:admin');
-Route::get('admin/action/edit_status/member/{kode_member}','member@DisableEnableUser')->middleware('auth:admin');
+	//route member crud
+	Route::post('/action/add/member', 'member@addMember')->name('upload.member');
+	Route::post('/action/update/member', 'member@editMember')->name('update.member');
+	Route::get('/action/hapus/member/{kode_member}','member@HapusAnggota');
+	Route::get('/action/update/edit_status/member/{kode_member}','member@DisableEnableUser');
 
-//user CRUD
-Route::post('admin/action/user/add', 'UsersControl@addUser')->name('add.user')->middleware('auth:admin');
-Route::post('admin/action/user/edit', 'UsersControl@editUser')->name('edit.user')->middleware('auth:admin');
-Route::get('admin/action/hapus/user/{kode_member}','UsersControl@hapusUser')->middleware('auth:admin');
+	//route user crud
+	Route::post('/action/user/add', 'UsersControl@addUser')->name('add.user');
+	Route::post('/action/user/edit', 'UsersControl@editUser')->name('edit.user');
+	Route::get('/action/hapus/user/{kode_member}','UsersControl@hapusUser');
 
-//proses simpan pinjam
-Route::get('/admin/page/simpan','dataMember@showMember')->middleware('auth:admin');
-Route::get('/admin/page/pinjam','dataMember@showMember')->middleware('auth:admin');
+	//routes simpan & pinjam (admin action)
+
+});
 //END ADMIN ROUTES
 
 //MANAGER ROUTES
-Route::get('/manager', function () {
-    return view('home.manager.index');
-})->middleware('auth:manager');
+Route::group(['prefix' => 'manager',  'middleware' => 'auth:manager'], function() {
+	//route show admin
+	Route::get('/', 'AdminController@ShowAdminList');
+	Route::get('/pages/view/daftar_admin', 'AdminController@ShowAdminList');
+	Route::get('/pages/view/daftar_user_admin','AdminController@showUserList');
+	Route::get('/pages/view/profile/', 'ManagerController@showProfile');
+	Route::get('/pages/view/profile/admin/{kode_admin}', 'AdminController@ProfileAdmin');
 
-//Auth::routes();
+	//route crud admin
+	Route::post('/action/add/admin', 'AdminController@AddAdmin')->name('upload.admin');
+	Route::post('/action/update/admin', 'AdminController@EditAdmin')->name('update.admin');
+	Route::get('/action/update/edit_status/admin/{kode_admin}','AdminController@DisableEnableAdmin');
+	Route::get('/action/hapus/admin/{kode_admin}','AdminController@HapusAdmin');
 
-//Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('page/profil/manager', function () {
-    return view('index');
+	//route admin user crud
+	Route::post('/action/admin/user/add', 'AdminController@addUser')->name('add.user_admin');
+	Route::post('/action/admin/user/edit', 'AdminController@editUser')->name('edit.user_admin');
+	Route::get('/action/admin/user/delete/{kode_admin}', 'AdminController@deleteUser');
 });

@@ -8,4 +8,5 @@ use Illuminate\Notifications\Notifiable;
 
 class login_admin extends Authenticatable{
     protected $table = 'admin_tbls';
+
 }

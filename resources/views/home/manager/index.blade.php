@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>manager</title>
-</head>
-<body>
-	<h1>Halaman Manager</h1>
-</body>
-</html>
+@include('Web.@components.top')
+@if(\Request::is('manager'))
+    @include('Web.pages.Dashboard')
+@elseif(\Request::is('manager/pages/view/daftar_admin'))
+    @include('Web.pages.Daftar_Admin')
+@elseif(\Request::is('manager/pages/view/daftar_user_admin'))
+    @include('Web.pages.Daftar_User_Admin')
+@endif
+@include('Web.@components.bottom')

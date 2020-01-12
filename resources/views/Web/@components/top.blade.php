@@ -31,18 +31,34 @@
                     </a>
                 </li>
                 <li>
+                    @auth('admin')
                     <a href="#pengguna" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fa fa-user"></i>
                         Users
                     </a>
                     <ul class="collapse list-unstyled" id="pengguna">
                         <li>
-                            <a href="{!! url('admin/pages/daftar_user'); !!}">Data User</a>
+                            <a href="{!! url('admin/pages/view/daftar_user'); !!}">Data User</a>
                         </li>
                         <li>
-                            <a href="{!! url('admin/pages/daftar_anggota'); !!}">Data Member</a>
+                            <a href="{!! url('admin/pages/view/daftar_anggota'); !!}">Data Member</a>
                         </li>
                     </ul>
+                    @endauth
+                    @auth('manager')
+                    <a href="#admins" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fa fa-user-shield"></i>
+                        Admins
+                    </a>
+                    <ul class="collapse list-unstyled" id="admins">
+                        <li>
+                            <a href="{!! url('manager/pages/view/daftar_user_admin'); !!}">Admin Users</a>
+                        </li>
+                        <li>
+                            <a href="{!! url('manager/pages/view/daftar_admin'); !!}">Data Admins</a>
+                        </li>
+                    </ul>
+                    @endauth
                 </li>
                 <li>
                     <a href="#kontak" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -82,9 +98,9 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="fa fa-lock"></i>
-                        Sign In
+                    <a href="/keluar">
+                        <i class="fa fa-sign-out-alt"></i>
+                        Sign Out
                     </a>
                 </li>
             </ul>
@@ -106,8 +122,9 @@
                                 <a class="nav-link" href="#">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Profil</a>
+                                <a href="@auth('admin') /admin/pages/view/profile @endauth @auth('manager') /manager/pages/view/profile/ @endauth" class="nav-link" href="#">Profil</a>
                             </li>
+                            @auth('admin')
                             <li class="nav-item">
                                 <a class="nav-link" href="{!! url('page/simpan'); !!}">Simpan</a>
                             </li>
@@ -123,6 +140,21 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Bagi Hasil</a>
                             </li>
+                            @endauth
+                            @auth('manager')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{!! url('page/simpan'); !!}">Laporan Simpnan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{!! url('page/pinjam'); !!}">Laporan Pinjaman</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Laporan Angsuran</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pending Approval</a>
+                            </li>
+                            @endauth
                         </ul>
                     </div>
                 </div>

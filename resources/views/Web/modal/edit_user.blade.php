@@ -8,7 +8,7 @@
 			 		<span aria-hidden="true">&times;</span>
 		  		</button>
 			</div>
-			<form role="form" action="{{ route('edit.user') }}" method="post" enctype="multipart/form-data">
+			<form role="form" action="@auth('admin') {{ route('edit.user') }} @endauth @auth('manager') {{ route('edit.user_admin') }} @endauth" method="post" enctype="multipart/form-data">
 				@csrf
 				<div class="modal-body" id="editUSR">
 			 		<div class="form-group row">

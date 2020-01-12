@@ -1,32 +1,32 @@
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="edit_anggota" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="edit_admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   	<div class="modal-dialog modal-lg" role="document">
 	 	<div class="modal-content">
 			<div class="modal-header">
-		  		<h5 class="modal-title" id="exampleModalLongTitle"><i class="fas fa-user-plus"></i> Edit Anggota</h5>
+		  		<h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-user-shield"></i> Edit Admin</h5>
 		  		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			 		<span aria-hidden="true">&times;</span>
 		  		</button>
 			</div>
-			<form role="form" action="{{ route('update.member') }}" method="post" enctype="multipart/form-data">
+			<form id="admin" role="form" action="{{ route('update.admin') }}" method="post" enctype="multipart/form-data">
 				@csrf
-				<div class="modal-body" id="show_edit">
+				<div class="modal-body" id="show_edit_admin">
 			 		<div class="form-group row">
-						<label class="col-lg-3 col-form-label form-control-label">Kode Anggota</label>
+						<label class="col-lg-3 col-form-label form-control-label">Kode Admin</label>
 				  		<div class="col-lg-9">
-							<input id="kode_member" class="form-control" name="kode_member" type="text" value="" readonly>
+							<input class="form-control" name="kd" type="text" id="kode_admin" value="" readonly required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-lg-3 col-form-label form-control-label">NIK</label>
 						<div class="col-lg-9">
-							<input id="nik" class="form-control" name="nik" type="text" value="" required="">
+							<input class="form-control" id="nik" name="nik" type="text" value="" required>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-lg-3 col-form-label form-control-label">Nama</label>
+						<label class="col-lg-3 col-form-label form-control-label">Nama Admin</label>
 						<div class="col-lg-9">
-							<input id="nama" class="form-control" name="nama" type="text" value="" required>
+							<input class="form-control" id="nama" name="nama" type="text" value="" required>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -40,9 +40,9 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-lg-3 col-form-label form-control-label">Pekerjaan</label>
+						<label class="col-lg-3 col-form-label form-control-label">Pendidikan</label>
 						<div class="col-lg-9">
-							<input id="pekerjaan" class="form-control" name="pk" type="text" value="" placeholder="" required>
+							<input id="pendidikan" class="form-control" name="pendidikan" type="text" value="" placeholder="" required>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -79,7 +79,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-lg-3 col-form-label form-control-label">Upload Photo</label>
+						<label class="col-lg-3 col-form-label form-control-label">Update Photo</label>
 						<div class="col-lg-9">
 							<div class="custom-file">
   								<input type="file" name="image" class="custom-file-input" id="dir_imgg" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
@@ -89,7 +89,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-		  			<button type="reset" class="btn btn-secondary">Reset</button>
+		  			<button type="reset" onclick="reset($('#dir_imgg'))" class="btn btn-secondary">Reset</button>
 		  			<input type="submit" class="btn btn-primary" value="Simpan">
 				</div>
 			</form>

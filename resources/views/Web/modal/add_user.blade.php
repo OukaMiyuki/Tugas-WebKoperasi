@@ -8,7 +8,7 @@
 			 		<span aria-hidden="true">&times;</span>
 		  		</button>
 			</div>
-			<form role="form" action="{{ route('add.user') }}" method="post" enctype="multipart/form-data">
+			<form role="form" action="@auth('admin'){{ route('add.user') }} @endauth @auth('manager') {{route('add.user_admin')}} @endauth" method="post" enctype="multipart/form-data">
 				@csrf
 				<div class="modal-body" id="UserAdd">
 			 		<div class="form-group row">
@@ -30,6 +30,12 @@
 						<label class="col-lg-3 col-form-label form-control-label">Akses</label>
 						<div class="col-lg-9">
 							<input id="akses" name="akses" class="form-control" type="text" value="" readonly="">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Status</label>
+						<div class="col-lg-9">
+							<input id="status" name="status" class="form-control" type="text" value="" readonly="">
 						</div>
 					</div>
 					<div class="form-group row">

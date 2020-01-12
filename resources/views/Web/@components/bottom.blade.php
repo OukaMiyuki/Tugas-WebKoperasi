@@ -39,6 +39,14 @@
                 });
             });
         };
+        $('#add_admin, #add_member, #userAdd', '#edit_admin').on('hidden.bs.modal', function () {
+            $(this).find('form').trigger('reset');
+        });
+        window.reset = function(e) {
+            e.wrap('<form>').closest('form').get(0).reset();
+            e.unwrap();
+            $('#dir_imgg').val('')
+        }
         $(document).ready(function () {
             fileuploadinit();
             fileuploadinit2();
