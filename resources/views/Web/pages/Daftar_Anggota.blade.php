@@ -34,14 +34,16 @@
                                                 <td align="center">
                                                     <a id="edit_data_member" data-toggle="modal" data-target="#edit_anggota" data-kode="{{ $d->kode_member }}" data-nik="{{ $d->nik }}"  data-nama="{{ $d->nama }}"  data-jk="{{ $d->jk }}"  data-pekerjaan="{{ $d->pekerjaan }}"  data-alamat="{{ $d->alamat }}"  data-kako="{{ $d->kabkota }}"  data-pos="{{ $d->pos }}"  data-email="{{ $d->email }}"  data-telp="{{ $d->telp }}"  data-photo="{{ $d->photo }}" data-ekstensi="{{ $d->ekstensi }}">
                                                         <button class="btn btn-primary btn-xs" ><i class="fas fa-edit"></i></i> Edit</button>
-                                                    </a>  
-                                                    <button class="btn btn-info btn-xs" ><i class="fas fa-eye"></i> Lihat Profil</button>
+                                                    </a>
+                                                    <a href="/admin/pages/view/profile/member/{{$d->kode_member}}">  
+                                                        <button class="btn btn-info btn-xs" ><i class="fas fa-eye"></i> Lihat Profil</button>
+                                                    </a>
                                                     @if($d->status_anggota == "Aktif")
-                                                        <a href="/admin/action/edit_status/member/{{ $d->kode_member }}">
+                                                        <a href="/admin/action/update/edit_status/member/{{ $d->kode_member }}">
                                                             <button class="btn btn-danger btn-xs" ><i class="fas fa-ban"></i> Non-Aktif</button> 
                                                         </a>
                                                     @elseif($d->status_anggota == "Non-Aktif")
-                                                        <a href="/admin/action/edit_status/member/{{ $d->kode_member }}">
+                                                        <a href="/admin/action/update/edit_status/member/{{ $d->kode_member }}">
                                                             <button class="btn btn-success btn-xs" ><i class="fas fa-unlock-alt"></i> Aktifkan</button>
                                                         </a>
                                                     @endif

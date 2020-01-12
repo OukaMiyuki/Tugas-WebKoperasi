@@ -32,9 +32,9 @@
                                                 <td>{{$d->kode_member}}</td>
                                                 <td>{{$d->nama}}</td>
                                                 <td>{{ $d->uername }}</td>
-                                                <td>{{ $d->pasword }}</td>
+                                                <td>{{ $d->password }}</td>
                                                 <td align="center">
-                                                    <a id="edit_user" data-toggle="modal" data-target="#editUser" data-kode = "{{$d->kode_member}}" data-nama = "{{$d->nama}}" data-username="{{$d->uername}}" data-pass="{{$d->pasword}}">
+                                                    <a id="edit_user" data-toggle="modal" data-target="#editUser" data-kode = "{{$d->kode_member}}" data-nama = "{{$d->nama}}" data-username="{{$d->uername}}" data-pass="{{$d->password}}">
                                                         <button class="btn btn-primary btn-sm" ><i class="fas fa-edit"></i></i></button> 
                                                     </a>
                                                     <a href="/admin/action/hapus/user/{{ $d->kode_member }}" onclick="return confirm('Hapus member {{ $d-> kode_member }} ?')">

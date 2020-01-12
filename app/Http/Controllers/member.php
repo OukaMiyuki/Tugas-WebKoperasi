@@ -9,11 +9,28 @@ use App\usr_image_db;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Auth;
 use Image;
 use File;
 
 class member extends Controller
 {
+    //function show data member
+    public function showMember(){
+        $tes = Auth::user()->kode_admin;
+        $users = DB::table('tb_anggotas')->count();
+        $data = DB::table('tb_anggotas')
+            ->join('cek_ids', 'cek_ids.kode_member', '=', 'tb_anggotas.kode_member')
+            ->join('usr_image_dbs', 'usr_image_dbs.kode_member', '=', 'tb_anggotas.kode_member')
+            ->get();
+        $kode="";
+        $cek = null;
+        $statement = DB::select("SHOW TABLE STATUS LIKE 'cek_ids'");
+        $cek = $statement[0]->Auto_increment;
+        $kode= "USR".date("Ymd")."-".$cek;
+        return view('/home/admin/index',['kode' => $kode, 'data' => $data]);
+    }
+    //function add member
     public function addMember(Request $request){
     	$kode_member = $request->input('kd');
 		$nik = $request->input('nik');
@@ -69,7 +86,7 @@ class member extends Controller
         ]);
         return redirect()->back()->with(['success' => 'Done Added!']);    
     }
-
+    //function edit data member
     public function editMember(Request $request){
         $kode_member = $request->input('kode_member');
         $nik = $request->input('nik');
@@ -96,7 +113,7 @@ class member extends Controller
                     'email' => $email,
                     'telp' => $telp
             ]);
-            return redirect()->back()->with(['success' => 'Done Added!']);    
+            return redirect()->back()->with(['success' => 'Done Updated!']);    
         } else{
             $ekstensi = $file->getClientOriginalExtension();
             $client = new \GuzzleHttp\Client();
@@ -131,7 +148,7 @@ class member extends Controller
             return redirect()->back()->with(['success' => 'Done Added!']);
         }
     }
-
+    //function enable disable member
     public function DisableEnableUser($kode_member){
         $cek = DB::table('cek_ids')->where('kode_member',$kode_member)->get();
         foreach ($cek as $data){ 
@@ -147,9 +164,19 @@ class member extends Controller
         }
         return redirect()->back()->with(['success' => 'Done Updated!']);
     }
-
+    //function hapus member
     public function HapusAnggota($kode_member){
         DB::table('tb_anggotas')->where('kode_member',$kode_member)->delete();
         return redirect()->back()->with(['success' => 'Done Deleted!']);
+    }
+
+    public function memberProfile($kode_member){
+        $data = DB::table('tb_anggotas')
+            ->join('cek_ids', 'cek_ids.kode_member', '=', 'tb_anggotas.kode_member')
+            ->join('usr_image_dbs', 'usr_image_dbs.kode_member', '=', 'cek_ids.kode_member')
+            ->where('tb_anggotas.kode_member', $kode_member)
+            ->get();
+        $data1 = DB::table('user_tbls')->where('kode_member', $kode_member)->get();
+        return view('Web/pages/profil', compact('data','data1'));
     }
 }

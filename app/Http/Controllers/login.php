@@ -12,14 +12,26 @@ class login extends Controller{
     	$data1 = admin_tbl::where('uername', $request->username)->Where('password', $request->password)->get();
     	$data2 = manager_tbl::where('uername', $request->username)->Where('password', $request->password)->get();
     	if(count($data1)>0){
-    		Auth::guard('admin')->LoginUsingId($data1[0]['id']);
-    		return redirect('/admin');
-    	} else if(count($data2)>0){
-    		AUth::guard('manager')->LoginUsingId($data2[0]['id']);
-    		return redirect('/manager');
-    	} else{
-    		return "login gagal!";
-    	}
+            foreach ($data1 as $cek) {
+                if($cek->status_admin == "Aktif"){
+                    Auth::guard('admin')->LoginUsingId($data1[0]['id']);
+                    return redirect('/admin');
+                } else if($cek->status_admin == "Non-Aktif"){
+                    return "Akun tidak aktif";
+                }
+            }
+        } else if(count($data2)>0){
+            foreach ($data2 as $cek) {
+                if($cek->status_manager == "Aktif"){
+                    AUth::guard('manager')->LoginUsingId($data2[0]['id']);
+                    return redirect('/manager');
+                } else if($cek->status_manager == "Non-Aktif"){
+                    return "Akun tidak aktif";
+                }
+            }
+        } else{
+            return "login gagal!";
+        }
     }
 
     function keluar(){
