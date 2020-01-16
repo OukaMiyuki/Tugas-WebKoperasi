@@ -13,7 +13,7 @@
         });
 
         $(document).ready(function() {
-            $('#tblMember').DataTable();
+            $('#tblMember, #tblWajib, #tblSukarela').DataTable();
         });
 
         $('#dir_img').on('change',function(){
