@@ -40,6 +40,16 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth:admin'], function() {
 	Route::post('/action/user/edit', 'UsersControl@editUser')->name('edit.user');
 	Route::get('/action/hapus/user/{kode_member}','UsersControl@hapusUser');
 
+	//route proses simpan dan pinjam
+	Route::get('/pages/view/member/simpan', 'SimpanPinjamController@viewSimpan')->name('simpan.member');
+	Route::post('/pages/view/member/simpan/process/add/simpanan/pokok', 'SimpanPinjamController@addSimpananPokok')->name('tambah.simpanan_pokok');
+	Route::post('/pages/view/member/simpan/process/add/simpanan/wajib', 'SimpanPinjamController@addSimpananWajib')->name('tambah.simpanan_wajib');
+	Route::post('/pages/view/member/simpan/process/add/simpanan/sukarela', 'SimpanPinjamController@addSimpananSukarela')->name('tambah.simpanan_sukarela');
+	Route::post('/action/edit/simpan/sukarela', 'SimpanPinjamController@editSimpananSukarela')->name('update.simpanan_sukarela');
+	Route::get('/action/hapus/simpan/pokok/member/{kode_member}', 'SimpanPinjamController@hapusSimpananPokok');
+	Route::get('/action/hapus/simpan/wajib/member/{kode_member}', 'SimpanPinjamController@hapusSimpananWajib');
+	Route::get('/action/hapus/simpan/sukarela/member/{kode_member}', 'SimpanPinjamController@hapusSimpananSukarela');
+
 	//routes simpan & pinjam (admin action)
 
 });
